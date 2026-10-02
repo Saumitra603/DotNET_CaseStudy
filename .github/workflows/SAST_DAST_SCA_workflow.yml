@@ -37,6 +37,10 @@ jobs:
         run: |
           New-Item -Path ${{ runner.temp }}\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path ${{ runner.temp }}\scanner
+      - name: Install .NET Framework 4.5.2 Developer Pack
+        shell: powershell
+        run: |
+          choco install netfx-4.5.2-devpack -y
       - name: Build and analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
